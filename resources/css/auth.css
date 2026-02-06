@@ -1,0 +1,30 @@
+:root {
+    --primary-navy: #2c3e50;
+}
+
+.login-container {
+    max-width: 850px;
+    
+}
+
+/* .carousel-img {
+    height: 480px;        
+    object-fit: cover;    
+} */
+
+.bg-navy {
+    background-color: var(--primary-navy);
+}
+
+.text-navy {
+    color: var(--primary-navy);
+}
+
+.btn-navy {
+    background-color: var(--primary-navy);
+    color: #fff;
+}
+
+.btn-navy:hover {
+    background-color: #1a252f;
+}
