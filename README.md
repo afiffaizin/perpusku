@@ -29,8 +29,6 @@
 
 Aplikasi ini dirancang dengan tampilan **SaaS enterprise** — bersih, responsif, dan profesional.
 
-
-
 ---
 
 ## 🛠️ Tech Stack
@@ -321,83 +319,6 @@ php artisan tinker
 | `PUT`    | `/admin/kembalikanBuku/{id}`  | `admin.kembalikanBuku`        | Proses pengembalian     |
 | `GET`    | `/admin/historyPeminjam`      | `admin.historyPeminjam`       | Riwayat peminjaman      |
 | `GET`    | `/admin/historyPeminjam/{id}` | `admin.detailPeminjamHistory` | Detail riwayat          |
-
----
-
-## 🧩 Blade Components
-
-Proyek ini menggunakan reusable Blade components:
-
-```blade
-{{-- Stat Card --}}
-<x-stat-card title="Total Buku" :value="150" icon="bi-book-fill" color="info" trend="+12%" />
-
-{{-- Page Header --}}
-<x-page-header title="Manajemen Buku" subtitle="128 judul tersedia">
-    <x-slot:actions>
-        <a href="#" class="btn-primary-custom">Tambah Buku</a>
-    </x-slot:actions>
-</x-page-header>
-
-{{-- Badge --}}
-<x-badge type="success" text="Tepat Waktu" />
-<x-badge type="danger" text="Terlambat 3 hari" />
-
-{{-- Data Table --}}
-<x-data-table title="Daftar Buku">
-    <x-slot:thead>...</x-slot:thead>
-    ...rows...
-    <x-slot:pagination>{{ $data->links() }}</x-slot:pagination>
-</x-data-table>
-
-{{-- Modal --}}
-<x-modal id="deleteModal" title="Konfirmasi Hapus" size="sm">
-    <x-slot:body>Yakin ingin menghapus?</x-slot:body>
-    <x-slot:footer>...</x-slot:footer>
-</x-modal>
-
-{{-- Empty State --}}
-<x-empty-state icon="bi-inbox" title="Data kosong" action-label="Tambah" :action-route="route('...')" />
-
-{{-- Form Card --}}
-<x-form-card title="Informasi Buku" subtitle="Isi data buku">
-    ...form fields...
-</x-form-card>
-```
-
----
-
-## 🎨 Design System
-
-### Palet Warna
-
-| Variabel        | Warna     | Fungsi                  |
-| --------------- | --------- | ----------------------- |
-| `--clr-primary` | `#4F46E5` | Indigo — warna utama    |
-| `--clr-success` | `#10B981` | Hijau — sukses/tersedia |
-| `--clr-warning` | `#F59E0B` | Kuning — peringatan     |
-| `--clr-danger`  | `#EF4444` | Merah — error/bahaya    |
-| `--clr-info`    | `#3B82F6` | Biru — informasi        |
-| `--sidebar-bg`  | `#1E1B4B` | Deep indigo — sidebar   |
-
-### Tipografi
-
-- Font: **Inter** (Google Fonts)
-- Body: 14px / line-height 1.6
-- Heading: 600 weight, `letter-spacing: -0.01em`
-- Label form: 500 weight, 13px
-
----
-
-## 📸 Screenshots
-
-> Tambahkan screenshots aplikasi di sini:
->
-> - Halaman Login
-> - Dashboard
-> - Daftar Buku
-> - Form Peminjaman (Wizard)
-> - Halaman Pengembalian
 
 ---
 
