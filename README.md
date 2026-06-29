@@ -1,59 +1,406 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel&logoColor=white" alt="Laravel 12">
+  <img src="https://img.shields.io/badge/Bootstrap-5.3-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap 5">
+  <img src="https://img.shields.io/badge/Chart.js-4-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js">
+  <img src="https://img.shields.io/badge/Alpine.js-3-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white" alt="Alpine.js">
+  <img src="https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite">
+  <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white" alt="PHP 8.2+">
 </p>
 
-## About Laravel
+<h1 align="center">📚 Perpusku</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  Sistem Manajemen Perpustakaan berbasis web — modern, profesional, dan mudah digunakan.<br>
+  Dibangun dengan <strong>Laravel 12</strong>, <strong>Bootstrap 5</strong>, <strong>Chart.js</strong>, dan <strong>Alpine.js</strong>.
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📖 Tentang Proyek
 
-## Learning Laravel
+**Perpusku** adalah aplikasi web admin-only untuk mengelola operasional perpustakaan, meliputi:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- 📚 Manajemen koleksi buku (CRUD lengkap dengan upload sampul)
+- 🎓 Manajemen data mahasiswa
+- 🔄 Proses peminjaman buku (wizard 3 langkah)
+- ✅ Proses pengembalian buku (deteksi keterlambatan otomatis)
+- 📊 Dashboard analitik dengan grafik interaktif
+- 📜 Riwayat peminjaman lengkap
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Aplikasi ini dirancang dengan tampilan **SaaS enterprise** — bersih, responsif, dan profesional.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+---
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🛠️ Tech Stack
 
-## Contributing
+### Backend
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| Teknologi      | Versi      | Fungsi                  |
+| -------------- | ---------- | ----------------------- |
+| PHP            | ^8.2       | Runtime                 |
+| Laravel        | 12         | Framework backend       |
+| Laravel Breeze | 2.3        | Scaffolding autentikasi |
+| MySQL          | 5.7+ / 8.0 | Database                |
 
-## Code of Conduct
+### Frontend
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Teknologi       | Versi | Fungsi                                                  |
+| --------------- | ----- | ------------------------------------------------------- |
+| Bootstrap       | 5.3   | CSS framework & komponen UI                             |
+| Bootstrap Icons | 1.13  | Icon library                                            |
+| Alpine.js       | 3.x   | Interaktivitas ringan (sidebar, wizard, flash messages) |
+| Chart.js        | 4.x   | Grafik dashboard (bar chart, doughnut chart)            |
+| Vite            | 7.x   | Build tool & HMR                                        |
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📁 Struktur Proyek
 
-## License
+```
+perpus-TRPL/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Auth/                    # Autentikasi (Breeze)
+│   │   │   ├── DashboardController.php  # Dashboard + chart data
+│   │   │   ├── BukuController.php       # CRUD buku
+│   │   │   ├── MahasiswaController.php  # CRUD mahasiswa
+│   │   │   ├── peminjamController.php   # CRUD peminjaman
+│   │   │   ├── PengembalianController.php # Proses pengembalian
+│   │   │   └── HistoryController.php    # Riwayat peminjaman
+│   │   └── Middleware/
+│   │       └── IsAdmin.php              # Middleware role admin
+│   ├── Models/
+│   │   ├── User.php                     # Admin / Petugas
+│   │   ├── Mahasiswa.php                # Data mahasiswa
+│   │   ├── Buku.php                     # Data buku
+│   │   ├── KategoriBuku.php             # Kategori buku
+│   │   ├── Penulis.php                  # Data penulis
+│   │   ├── Peminjaman.php               # Transaksi peminjaman
+│   │   ├── DetailPeminjaman.php         # Detail buku per peminjaman
+│   │   └── Pengembalian.php             # Data pengembalian
+│   └── Providers/
+│       └── AppServiceProvider.php       # Bootstrap 5 pagination
+│
+├── resources/
+│   ├── css/
+│   │   ├── app.css                      # CSS variables + global styles
+│   │   └── components/
+│   │       ├── sidebar.css              # Sidebar styles
+│   │       ├── cards.css                # Stat cards, content cards
+│   │       ├── tables.css               # Data tables, action buttons
+│   │       └── forms.css                # Form inputs, buttons, upload area
+│   ├── js/
+│   │   └── app.js                       # Bootstrap + Alpine.js + Chart.js setup
+│   └── views/
+│       ├── layouts/
+│       │   └── app.blade.php            # Layout utama (sidebar + topbar)
+│       ├── components/
+│       │   ├── stat-card.blade.php       # Kartu statistik
+│       │   ├── page-header.blade.php     # Header halaman
+│       │   ├── data-table.blade.php      # Wrapper tabel data
+│       │   ├── badge.blade.php           # Badge status
+│       │   ├── modal.blade.php           # Modal dialog
+│       │   ├── form-card.blade.php       # Card container form
+│       │   └── empty-state.blade.php     # Tampilan data kosong
+│       ├── auth/
+│       │   └── login.blade.php           # Halaman login split-screen
+│       ├── dashboard.blade.php           # Dashboard + Chart.js
+│       ├── buku/
+│       │   ├── index.blade.php           # Daftar buku
+│       │   ├── create.blade.php          # Tambah buku
+│       │   ├── edit.blade.php            # Edit buku
+│       │   └── show.blade.php            # Detail buku
+│       ├── mahasiswa/
+│       │   ├── index.blade.php           # Daftar mahasiswa
+│       │   ├── create.blade.php          # Tambah mahasiswa
+│       │   └── edit.blade.php            # Edit mahasiswa
+│       ├── peminjaman/
+│       │   ├── index.blade.php           # Daftar peminjaman aktif
+│       │   ├── create.blade.php          # Form peminjaman (wizard)
+│       │   └── show.blade.php            # Detail peminjaman
+│       ├── pengembalian/
+│       │   └── create.blade.php          # Proses pengembalian
+│       └── riwayat/
+│           ├── index.blade.php           # Riwayat peminjaman
+│           └── show.blade.php            # Detail riwayat
+│
+├── routes/
+│   ├── web.php                          # Route utama
+│   └── auth.php                         # Route autentikasi (Breeze)
+│
+├── database/
+│   └── migrations/                      # 10 migration files
+│
+├── vite.config.js                       # Konfigurasi Vite
+├── package.json                         # Dependencies NPM
+└── composer.json                        # Dependencies PHP
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🗄️ Skema Database
+
+```
+┌──────────────┐     ┌──────────────┐     ┌──────────────────┐
+│    users     │     │  mahasiswas  │     │   kategori_bukus │
+├──────────────┤     ├──────────────┤     ├──────────────────┤
+│ id           │     │ id           │     │ id               │
+│ name         │     │ nim (unique) │     │ nama_kategori    │
+│ email        │     │ nama         │     └────────┬─────────┘
+│ password     │     │ prodi        │              │
+│ role         │     │ kelas        │     ┌────────┴─────────┐
+└──────┬───────┘     │ angkatan     │     │     penulis      │
+       │             └──────┬───────┘     ├──────────────────┤
+       │                    │             │ id               │
+       │                    │             │ nama_penulis     │
+       │                    │             └────────┬─────────┘
+       │                    │                      │
+       │             ┌──────┴───────┐     ┌────────┴─────────┐
+       │             │  peminjaman  │     │      bukus       │
+       │             ├──────────────┤     ├──────────────────┤
+       └────────────►│ id           │     │ id               │
+        petugas_id   │ mahasiswa_id ├────►│ isbn (unique)    │
+                     │ petugas_id   │     │ judul            │
+                     │ tanggal_pinjam     │ kategori_id ─────┘
+                     │ tanggal_jatuh_tempo│ penulis_id ───────┘
+                     │ status       │     │ bahasa           │
+                     └──────┬───────┘     │ jumlah_halaman   │
+                            │             │ stok             │
+                     ┌──────┴──────────┐  │ sampul           │
+                     │detail_peminjaman│  └──────────────────┘
+                     ├────────────────┤           ▲
+                     │ id             │           │
+                     │ peminjaman_id  │           │
+                     │ buku_id  ──────┼───────────┘
+                     │ jumlah         │
+                     └────────────────┘
+                            │
+                     ┌──────┴───────┐
+                     │pengembalians │
+                     ├──────────────┤
+                     │ id           │
+                     │ peminjaman_id│
+                     │tanggal_kembali
+                     └──────────────┘
+```
+
+---
+
+## 🚀 Instalasi
+
+### Prasyarat
+
+- **PHP** >= 8.2
+- **Composer** >= 2.x
+- **Node.js** >= 18.x & **NPM** >= 9.x
+- **MySQL** >= 5.7 atau 8.0
+- **Git**
+
+### Langkah Instalasi
+
+```bash
+# 1. Clone repository
+git clone https://github.com/username/perpus-TRPL.git
+cd perpus-TRPL
+
+# 2. Install dependencies PHP
+composer install
+
+# 3. Install dependencies NPM
+npm install
+
+# 4. Salin file environment
+cp .env.example .env
+
+# 5. Generate application key
+php artisan key:generate
+
+# 6. Konfigurasi database di file .env
+#    Sesuaikan DB_DATABASE, DB_USERNAME, DB_PASSWORD
+```
+
+Edit file `.env`:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_perpustakaanku
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+```bash
+# 7. Jalankan migrasi database
+php artisan migrate
+
+# 8. Buat symlink storage untuk upload sampul
+php artisan storage:link
+
+# 9. Build assets frontend
+npm run build
+
+# 10. Jalankan server
+php artisan serve
+```
+
+Akses aplikasi di: **http://127.0.0.1:8000**
+
+---
+
+## ⚡ Development Mode
+
+Untuk development dengan hot-reload:
+
+```bash
+# Terminal 1 — Laravel server
+php artisan serve
+
+# Terminal 2 — Vite dev server
+npm run dev
+```
+
+Atau jalankan keduanya sekaligus:
+
+```bash
+composer dev
+```
+
+---
+
+## 🔑 Login Default
+
+Setelah migrasi, buat user admin via Tinker:
+
+```bash
+php artisan tinker
+```
+
+```php
+\App\Models\User::create([
+    'name' => 'Admin',
+    'email' => 'admin@gmail.com',
+    'password' => bcrypt('password'),
+    'role' => 'admin',
+]);
+```
+
+| Email             | Password   |
+| ----------------- | ---------- |
+| `admin@gmail.com` | `password` |
+
+---
+
+## 🗺️ Daftar Route
+
+| Method   | URI                           | Nama Route                    | Fungsi                  |
+| -------- | ----------------------------- | ----------------------------- | ----------------------- |
+| `GET`    | `/`                           | —                             | Halaman login           |
+| `GET`    | `/admin/dashboard`            | `admin.dashboard`             | Dashboard               |
+| `GET`    | `/admin/mahasiswa`            | `admin.mahasiswa.index`       | Daftar mahasiswa        |
+| `GET`    | `/admin/addMahasiswa`         | `admin.addMahasiswa`          | Form tambah mahasiswa   |
+| `POST`   | `/admin/addMahasiswa`         | `admin.storeMahasiswa`        | Simpan mahasiswa        |
+| `GET`    | `/admin/mahasiswa/edit/{id}`  | `admin.mahasiswa.edit`        | Form edit mahasiswa     |
+| `PUT`    | `/admin/mahasiswa/edit/{id}`  | `admin.updateMahasiswa`       | Update mahasiswa        |
+| `DELETE` | `/admin/mahasiswa/{id}`       | `admin.mahasiswa.delete`      | Hapus mahasiswa         |
+| `GET`    | `/admin/viewBuku`             | `admin.viewBuku`              | Daftar buku             |
+| `GET`    | `/admin/tambahBuku`           | `admin.tambahBuku`            | Form tambah buku        |
+| `POST`   | `/admin/tambahBuku`           | `admin.storeBuku`             | Simpan buku             |
+| `GET`    | `/admin/editBuku/{id}`        | `admin.editBuku`              | Form edit buku          |
+| `PUT`    | `/admin/editBuku/{id}`        | `admin.updateBuku`            | Update buku             |
+| `DELETE` | `/admin/deleteBuku/{id}`      | `admin.deleteBuku`            | Hapus buku              |
+| `GET`    | `/admin/detailBuku/{id}`      | `admin.detailBuku`            | Detail buku             |
+| `GET`    | `/admin/viewPeminjam`         | `admin.viewPeminjam`          | Daftar peminjaman aktif |
+| `GET`    | `/admin/addPeminjam`          | `admin.tambahPeminjam`        | Form peminjaman baru    |
+| `POST`   | `/admin/addPeminjam`          | `admin.storePeminjam`         | Simpan peminjaman       |
+| `GET`    | `/admin/detailPeminjam/{id}`  | `admin.detailPeminjam`        | Detail peminjaman       |
+| `GET`    | `/admin/pengembalian/{id}`    | `admin.pengembalian.create`   | Halaman pengembalian    |
+| `PUT`    | `/admin/kembalikanBuku/{id}`  | `admin.kembalikanBuku`        | Proses pengembalian     |
+| `GET`    | `/admin/historyPeminjam`      | `admin.historyPeminjam`       | Riwayat peminjaman      |
+| `GET`    | `/admin/historyPeminjam/{id}` | `admin.detailPeminjamHistory` | Detail riwayat          |
+
+---
+
+## 🧩 Blade Components
+
+Proyek ini menggunakan reusable Blade components:
+
+```blade
+{{-- Stat Card --}}
+<x-stat-card title="Total Buku" :value="150" icon="bi-book-fill" color="info" trend="+12%" />
+
+{{-- Page Header --}}
+<x-page-header title="Manajemen Buku" subtitle="128 judul tersedia">
+    <x-slot:actions>
+        <a href="#" class="btn-primary-custom">Tambah Buku</a>
+    </x-slot:actions>
+</x-page-header>
+
+{{-- Badge --}}
+<x-badge type="success" text="Tepat Waktu" />
+<x-badge type="danger" text="Terlambat 3 hari" />
+
+{{-- Data Table --}}
+<x-data-table title="Daftar Buku">
+    <x-slot:thead>...</x-slot:thead>
+    ...rows...
+    <x-slot:pagination>{{ $data->links() }}</x-slot:pagination>
+</x-data-table>
+
+{{-- Modal --}}
+<x-modal id="deleteModal" title="Konfirmasi Hapus" size="sm">
+    <x-slot:body>Yakin ingin menghapus?</x-slot:body>
+    <x-slot:footer>...</x-slot:footer>
+</x-modal>
+
+{{-- Empty State --}}
+<x-empty-state icon="bi-inbox" title="Data kosong" action-label="Tambah" :action-route="route('...')" />
+
+{{-- Form Card --}}
+<x-form-card title="Informasi Buku" subtitle="Isi data buku">
+    ...form fields...
+</x-form-card>
+```
+
+---
+
+## 🎨 Design System
+
+### Palet Warna
+
+| Variabel        | Warna     | Fungsi                  |
+| --------------- | --------- | ----------------------- |
+| `--clr-primary` | `#4F46E5` | Indigo — warna utama    |
+| `--clr-success` | `#10B981` | Hijau — sukses/tersedia |
+| `--clr-warning` | `#F59E0B` | Kuning — peringatan     |
+| `--clr-danger`  | `#EF4444` | Merah — error/bahaya    |
+| `--clr-info`    | `#3B82F6` | Biru — informasi        |
+| `--sidebar-bg`  | `#1E1B4B` | Deep indigo — sidebar   |
+
+### Tipografi
+
+- Font: **Inter** (Google Fonts)
+- Body: 14px / line-height 1.6
+- Heading: 600 weight, `letter-spacing: -0.01em`
+- Label form: 500 weight, 13px
+
+---
+
+## 📸 Screenshots
+
+> Tambahkan screenshots aplikasi di sini:
+>
+> - Halaman Login
+> - Dashboard
+> - Daftar Buku
+> - Form Peminjaman (Wizard)
+> - Halaman Pengembalian
+
+---
+
+## 📄 Lisensi
+
+Proyek ini menggunakan lisensi [MIT](https://opensource.org/licenses/MIT).
