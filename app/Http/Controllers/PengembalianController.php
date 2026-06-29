@@ -10,9 +10,19 @@ use Illuminate\Support\Facades\DB;
 
 class PengembalianController extends Controller
 {
+    public function create($peminjamanId)
+    {
+        $peminjaman = Peminjaman::with('mahasiswa', 'detailPeminjaman.buku')->findOrFail($peminjamanId);
+
+        if ($peminjaman->status === 'dikembalikan') {
+            return redirect()->route('admin.viewPeminjam')->with('error', 'Buku sudah dikembalikan');
+        }
+
+        return view('pengembalian.create', compact('peminjaman'));
+    }
+
     public function kembalikanBuku($peminjamanId)
     {
-
         $peminjaman = Peminjaman::with('detailPeminjaman.buku')->findOrFail($peminjamanId);
 
         if ($peminjaman->status === 'dikembalikan') {
@@ -20,7 +30,6 @@ class PengembalianController extends Controller
         }
 
         DB::transaction(function () use ($peminjaman) {
-
             foreach ($peminjaman->detailPeminjaman as $detail) {
                 $detail->buku->tambahStok($detail->jumlah);
             }
@@ -34,6 +43,7 @@ class PengembalianController extends Controller
                 'tanggal_kembali' => Carbon::now()
             ]);
         });
+
         return redirect()->route('admin.viewPeminjam')->with('success', 'Buku berhasil dikembalikan.');
     }
 }

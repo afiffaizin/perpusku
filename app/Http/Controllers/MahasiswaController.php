@@ -6,44 +6,33 @@ use App\Models\Buku;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\DetailPeminjaman;
-use Illuminate\Auth\Events\Validated;
-
 
 class MahasiswaController extends Controller
 {
-    // ambil jumlah Mahasiswa
+    // Dashboard — now handled by DashboardController
+    // This index now shows mahasiswa list page
     public function index(Request $request)
     {
-        $totalMahasiswa = Mahasiswa::count();
-        $totalStok = Buku::sum('stok');
-        $totalDipinjam = DetailPeminjaman::whereHas('peminjaman', function ($query) {
-            $query->where('status', 'dipinjam');
-        })->sum('jumlah');
-
-        $stokAwal = $totalDipinjam + $totalStok;
-
-
-
-        // Tampilkan data mahasiswa di dashboard 
-        $mahasiswas = Mahasiswa::latest()->paginate(10);
-
         $search = $request->search;
 
-        $mahasiswas = Mahasiswa::when($search, function ($query) use ($search) {
-            $query->where('nama', 'like', "%{$search}%")
-                ->orWhere('nim', 'like', "%{$search}%");
-        })
+        $mahasiswas = Mahasiswa::withCount(['peminjaman' => function ($query) {
+                $query->where('status', 'dipinjam');
+            }])
+            ->when($search, function ($query) use ($search) {
+                $query->where('nama', 'like', "%{$search}%")
+                    ->orWhere('nim', 'like', "%{$search}%");
+            })
             ->orderBy('nama', 'asc')
             ->paginate(10)
             ->withQueryString();
 
-        return view('admin.dashboard.dashboard', compact('totalMahasiswa', 'mahasiswas', 'totalStok', 'totalDipinjam', 'stokAwal'));
+        return view('mahasiswa.index', compact('mahasiswas'));
     }
 
     // Tampilkan form tambah Mahasiswa
     public function create()
     {
-        return view('admin.dashboard.addMahasiswa');
+        return view('mahasiswa.create');
     }
 
     // Create data Mahasiswa
@@ -59,7 +48,7 @@ class MahasiswaController extends Controller
 
         Mahasiswa::create($validated);
 
-        return redirect()->back()->with('success', 'Mahasiswa berhasil ditambahkan!');
+        return redirect()->route('admin.mahasiswa.index')->with('success', 'Mahasiswa berhasil ditambahkan!');
     }
 
     // Hapus data Mahasiswa
@@ -78,7 +67,7 @@ class MahasiswaController extends Controller
     public function edit($id)
     {
         $mahasiswa = Mahasiswa::findOrFail($id);
-        return view('admin.dashboard.editMahasiswa', compact('mahasiswa'));
+        return view('mahasiswa.edit', compact('mahasiswa'));
     }
 
     // Update data Mahasiswa
@@ -96,6 +85,6 @@ class MahasiswaController extends Controller
 
         $mahasiswa->update($validated);
 
-        return redirect()->route('admin.dashboard')->with('success', 'Data Mahasiswa berhasil diperbarui!');
+        return redirect()->route('admin.mahasiswa.index')->with('success', 'Data Mahasiswa berhasil diperbarui!');
     }
 }

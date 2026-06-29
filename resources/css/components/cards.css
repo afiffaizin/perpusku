@@ -1,0 +1,288 @@
+/* ============ STAT CARDS ============ */
+.stat-card {
+    background: var(--clr-surface);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--clr-border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    transition: box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card .stat-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.stat-card .stat-icon.primary {
+    background: var(--clr-primary-lt);
+    color: var(--clr-primary);
+}
+
+.stat-card .stat-icon.info {
+    background: var(--clr-info-lt);
+    color: var(--clr-info);
+}
+
+.stat-card .stat-icon.warning {
+    background: var(--clr-warning-lt);
+    color: var(--clr-warning);
+}
+
+.stat-card .stat-icon.success {
+    background: var(--clr-success-lt);
+    color: var(--clr-success);
+}
+
+.stat-card .stat-icon.danger {
+    background: var(--clr-danger-lt);
+    color: var(--clr-danger);
+}
+
+.stat-card .stat-value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--clr-text);
+    line-height: 1.2;
+    margin-top: 4px;
+}
+
+.stat-card .stat-label {
+    font-size: 13px;
+    color: var(--clr-muted);
+    margin-top: 2px;
+}
+
+.stat-card .stat-trend {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-bottom: 4px;
+}
+
+.stat-card .stat-trend.up {
+    background: var(--clr-success-lt);
+    color: var(--clr-success);
+}
+
+.stat-card .stat-trend.down {
+    background: var(--clr-danger-lt);
+    color: var(--clr-danger);
+}
+
+/* ============ PAGE HEADER ============ */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.page-header .page-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--clr-text);
+    letter-spacing: -0.01em;
+    margin: 0;
+}
+
+.page-header .page-subtitle {
+    font-size: 14px;
+    color: var(--clr-muted);
+    margin: 2px 0 0;
+}
+
+/* ============ CONTENT CARDS ============ */
+.content-card {
+    background: var(--clr-surface);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--clr-border);
+    overflow: hidden;
+}
+
+.content-card .card-header-custom {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--clr-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.content-card .card-header-custom .card-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--clr-text);
+    margin: 0;
+}
+
+.content-card .card-header-custom .card-subtitle {
+    font-size: 13px;
+    color: var(--clr-muted);
+    margin: 2px 0 0;
+}
+
+.content-card .card-body-custom {
+    padding: 24px;
+}
+
+/* ============ CHART CARDS ============ */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+}
+
+.doughnut-center {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.doughnut-center .center-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--clr-text);
+}
+
+.doughnut-center .center-label {
+    font-size: 12px;
+    color: var(--clr-muted);
+}
+
+/* ============ BADGE ============ */
+.badge-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.badge-custom.badge-success {
+    background: var(--clr-success-lt);
+    color: #065F46;
+}
+
+.badge-custom.badge-warning {
+    background: var(--clr-warning-lt);
+    color: #92400E;
+}
+
+.badge-custom.badge-danger {
+    background: var(--clr-danger-lt);
+    color: #991B1B;
+}
+
+.badge-custom.badge-info {
+    background: var(--clr-info-lt);
+    color: #1E40AF;
+}
+
+.badge-custom.badge-primary {
+    background: var(--clr-primary-lt);
+    color: var(--clr-primary-dk);
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-state {
+    text-align: center;
+    padding: 48px 24px;
+}
+
+.empty-state .empty-icon {
+    font-size: 48px;
+    color: var(--clr-border);
+    margin-bottom: 16px;
+}
+
+.empty-state .empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--clr-text);
+    margin-bottom: 4px;
+}
+
+.empty-state .empty-desc {
+    font-size: 14px;
+    color: var(--clr-muted);
+    margin-bottom: 20px;
+}
+
+/* ============ RECENT BOOK LIST ============ */
+.book-list-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--clr-border);
+}
+
+.book-list-item:last-child {
+    border-bottom: none;
+}
+
+.book-list-item .book-cover {
+    width: 40px;
+    height: 56px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: var(--clr-bg);
+    flex-shrink: 0;
+}
+
+.book-list-item .book-cover-placeholder {
+    width: 40px;
+    height: 56px;
+    border-radius: 4px;
+    background: var(--clr-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--clr-muted);
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.book-list-item .book-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.book-list-item .book-info .book-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--clr-text);
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book-list-item .book-info .book-author {
+    font-size: 12px;
+    color: var(--clr-muted);
+    margin: 0;
+}

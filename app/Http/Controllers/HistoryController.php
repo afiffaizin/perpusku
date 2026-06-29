@@ -11,7 +11,7 @@ class HistoryController extends Controller
     {
         $search = $request->search;
 
-        $peminjamans = Peminjaman::with('mahasiswa', 'petugas')
+        $peminjamans = Peminjaman::with('mahasiswa', 'petugas', 'pengembalian', 'detailPeminjaman.buku')
             ->where('status', 'dikembalikan')
             ->when($search, function ($query) use ($search) {
                 $query->whereHas('mahasiswa', function ($q) use ($search) {
@@ -22,12 +22,12 @@ class HistoryController extends Controller
             ->paginate(10)
             ->withQueryString();
 
-        return view('admin.historyPeminjaman.historyPeminjaman', compact('peminjamans'));
+        return view('riwayat.index', compact('peminjamans'));
     }
-    // Detail History Peminjaman
+
     public function detailHistory($id)
     {
         $peminjaman = Peminjaman::with('mahasiswa', 'petugas', 'detailPeminjaman.buku', 'pengembalian')->findOrFail($id);
-        return view('admin.historyPeminjaman.detailHistory', compact('peminjaman'));
+        return view('riwayat.show', compact('peminjaman'));
     }
 }

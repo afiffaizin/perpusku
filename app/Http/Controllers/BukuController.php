@@ -10,12 +10,57 @@ use Illuminate\Support\Facades\Storage;
 
 class BukuController extends Controller
 {
+    // tampilkan daftar buku
+    public function index(Request $request)
+    {
+        $search = $request->search;
+        $kategoriFilter = $request->kategori;
+        $stokFilter = $request->stok;
+
+        $kategoris = KategoriBuku::orderBy('nama_kategori')->get();
+
+        $bukus = Buku::with('kategori', 'penulis')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('judul', 'like', "%{$search}%")
+                      ->orWhere('isbn', 'like', "%{$search}%")
+                      ->orWhereHas('penulis', function ($q2) use ($search) {
+                          $q2->where('nama_penulis', 'like', "%{$search}%");
+                      });
+                });
+            })
+            ->when($kategoriFilter, function ($query) use ($kategoriFilter) {
+                $query->where('kategori_id', $kategoriFilter);
+            })
+            ->when($stokFilter === 'tersedia', function ($query) {
+                $query->where('stok', '>', 0);
+            })
+            ->when($stokFilter === 'habis', function ($query) {
+                $query->where('stok', 0);
+            })
+            ->orderBy('judul', 'asc')
+            ->paginate(10)
+            ->withQueryString();
+
+        $totalKategori = KategoriBuku::count();
+        $totalBuku = Buku::count();
+
+        return view('buku.index', compact('bukus', 'kategoris', 'totalKategori', 'totalBuku'));
+    }
+
+    // tampilkan form tambah buku
+    public function create()
+    {
+        $kategoris = KategoriBuku::orderBy('nama_kategori')->get();
+        $penulisList = Penulis::orderBy('nama_penulis')->get();
+        return view('buku.create', compact('kategoris', 'penulisList'));
+    }
+
     // tambah buku
     public function store(Request $request)
     {
-        // Validasi inputan
         $validated = $request->validate([
-            'judul' => 'required|string|min:10|max:30',
+            'judul' => 'required|string|min:3|max:255',
             'isbn' => 'required|string|max:20|unique:bukus,isbn',
             'kategori' => 'required|string|max:40',
             'penulis' => 'required|string|max:40',
@@ -25,13 +70,9 @@ class BukuController extends Controller
             'sampul' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Cari atau buat kategori
         $kategori = KategoriBuku::firstOrCreate(['nama_kategori' => $validated['kategori']]);
-
-        // Cari atau buat penulis
         $penulis = Penulis::firstOrCreate(['nama_penulis' => $validated['penulis']]);
 
-        // Handle file upload
         $fileName = null;
         if ($request->hasFile('sampul')) {
             $file = $request->file('sampul');
@@ -39,8 +80,7 @@ class BukuController extends Controller
             $file->storeAs('sampul', $fileName, 'public');
         }
 
-        // Siapkan data untuk database
-        $bukuData = [
+        Buku::create([
             'isbn' => $validated['isbn'],
             'judul' => $validated['judul'],
             'kategori_id' => $kategori->id,
@@ -49,39 +89,18 @@ class BukuController extends Controller
             'jumlah_halaman' => $validated['jumlah_halaman'],
             'stok' => $validated['stok'],
             'sampul' => $fileName,
-        ];
+        ]);
 
-
-        Buku::create($bukuData);
-        return redirect()->back()->with('success', 'Buku berhasil ditambahkan!');
-    }
-
-    // tampilkan form tambah tambahBuku
-    public function create()
-    {
-        return view('admin.kelolaBuku.addBuku');
-    }
-
-    // tampilkan daftar buku
-    public function index(Request $request)
-    {
-        $search = $request->search;
-        $bukus = Buku::with('kategori', 'penulis')
-            ->when($search, function ($query) use ($search) {
-                $query->where('judul', 'like', "%{$search}%");
-            })
-            ->orderBy('judul', 'asc')
-            ->paginate(10)
-            ->withQueryString();
-
-        return view('admin.kelolaBuku.viewBuku', compact('bukus'));
+        return redirect()->route('admin.viewBuku')->with('success', 'Buku berhasil ditambahkan!');
     }
 
     // edit buku
     public function edit($id)
     {
-        $buku = Buku::findOrFail($id);
-        return view('admin.kelolaBuku.editBuku', compact('buku'));
+        $buku = Buku::with('kategori', 'penulis')->findOrFail($id);
+        $kategoris = KategoriBuku::orderBy('nama_kategori')->get();
+        $penulisList = Penulis::orderBy('nama_penulis')->get();
+        return view('buku.edit', compact('buku', 'kategoris', 'penulisList'));
     }
 
     // Update buku
@@ -89,7 +108,7 @@ class BukuController extends Controller
     {
         $buku = Buku::findOrFail($id);
         $validated = $request->validate([
-            'judul' => 'required|string|min:10|max:30',
+            'judul' => 'required|string|min:3|max:255',
             'isbn' => 'required|string|max:20|unique:bukus,isbn,' . $id,
             'kategori' => 'required|string|max:40',
             'penulis' => 'required|string|max:40',
@@ -100,25 +119,18 @@ class BukuController extends Controller
         ]);
 
         $kategori = KategoriBuku::firstOrCreate(['nama_kategori' => $validated['kategori']]);
-
         $penulis = Penulis::firstOrCreate(['nama_penulis' => $validated['penulis']]);
 
-        // Handle file upload
         $fileName = $buku->sampul;
-
         if ($request->hasFile('sampul')) {
-            // Hapus sampul lama jika ada
             if ($buku->sampul && Storage::disk('public')->exists('sampul/' . $buku->sampul)) {
                 Storage::disk('public')->delete('sampul/' . $buku->sampul);
             }
-
-            // Upload sampul baru
             $file = $request->file('sampul');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->storeAs('sampul', $fileName, 'public');
         }
 
-        // UPDATE DATA BUKU
         $buku->update([
             'isbn' => $validated['isbn'],
             'judul' => $validated['judul'],
@@ -129,9 +141,9 @@ class BukuController extends Controller
             'stok' => $validated['stok'],
             'sampul' => $fileName,
         ]);
+
         return redirect()->route('admin.viewBuku')->with('success', 'Buku berhasil diperbarui!');
     }
-
 
     // Hapus buku
     public function destroy($id)
@@ -149,6 +161,6 @@ class BukuController extends Controller
     public function show($id)
     {
         $buku = Buku::with('kategori', 'penulis')->findOrFail($id);
-        return view('admin.kelolaBuku.detailBuku', compact('buku'));
+        return view('buku.show', compact('buku'));
     }
 }
