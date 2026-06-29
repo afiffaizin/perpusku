@@ -16,10 +16,10 @@ class BukuSeeder extends Seeder
     public function run(): void
     {
 
-        KategoriBuku::factory()->count(3)->create();
-        Penulis::factory()->count(3)->create();
+        KategoriBuku::factory()->count(5)->create();
+        Penulis::factory()->count(10)->create();
 
-        // Buat 20 buku dummy
-        Buku::factory()->count(20)->create();
+        // Buat 50 buku dummy
+        Buku::factory()->count(50)->create();
     }
 }

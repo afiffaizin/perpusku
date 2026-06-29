@@ -6,6 +6,7 @@ use Database\Seeders\UserSeeder;
 use Database\Seeders\PenulisSeeder;
 use Database\Seeders\MahasiswaSeeder;
 use Database\Seeders\KategoriBukuSeeder;
+use Database\Seeders\PeminjamanSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             MahasiswaSeeder::class,
             BukuSeeder::class,
+            PeminjamanSeeder::class,
         ]);
     }
 }

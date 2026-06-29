@@ -65,13 +65,11 @@ class BukuController extends Controller
     // tampilkan daftar buku
     public function index(Request $request)
     {
-
-        $bukus = Buku::with('kategori', 'penulis')->latest()->paginate(10);
-
         $search = $request->search;
-        $bukus = Buku::when($search, function ($query) use ($search) {
-            $query->where('judul', 'like', "%{$search}%");
-        })
+        $bukus = Buku::with('kategori', 'penulis')
+            ->when($search, function ($query) use ($search) {
+                $query->where('judul', 'like', "%{$search}%");
+            })
             ->orderBy('judul', 'asc')
             ->paginate(10)
             ->withQueryString();

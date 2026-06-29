@@ -1,113 +1,89 @@
-@extends('adminlte::page')
+@extends('admin.layouts.admin')
 
 @section('title', 'Edit Buku')
+@section('page-title', 'Edit Buku')
 
 @section('content')
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
-        <div>
-            <h4 class="fw-bold mb-1 mt-4">Edit Buku</h4>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb breadcrumb-sm mb-0 text-muted" style="background: transparent; padding: 0;">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('admin.viewBuku') }}" class="text-decoration-none text-muted">kelola Buku</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">Edit Buku</li>
-                </ol>
-            </nav>
-        </div>
-    </div>
+    <nav class="flex items-center gap-2 text-sm text-gray-500 mb-6">
+        <a href="{{ route('admin.viewBuku') }}" class="hover:text-gray-700 transition-colors">Kelola Buku</a>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        <span class="text-gray-900 font-medium">Edit Buku</span>
+    </nav>
 
-    <div class="card">
-        <div class="card-body">
-
-            {{-- Alert sukses --}}
-            @if (session('success'))
-                <div class="alert alert-success">{{ session('success') }}</div>
-            @endif
-
-            <form action="{{ route('admin.updateBuku', $buku->id) }}" method="POST" enctype="multipart/form-data">
+    <div class="max-w-2xl">
+        <div class="bg-white rounded-xl border border-gray-200 p-6">
+            <form action="{{ route('admin.updateBuku', $buku->id) }}" method="POST" enctype="multipart/form-data" class="space-y-5">
                 @csrf
                 @method('PUT')
 
-                {{-- Judul Buku --}}
-                <div class="mb-3">
-                    <label>Judul Buku</label>
-                    <input type="text" name="judul" class="form-control" value="{{ old('judul', $buku->judul) }}">
-                    @error('judul')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Judul Buku</label>
+                    <input type="text" name="judul" value="{{ old('judul', $buku->judul) }}"
+                           class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('judul') border-red-300 @enderror">
+                    @error('judul') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
 
-                {{-- ISBN --}}
-                <div class="mb-3">
-                    <label>ISBN</label>
-                    <input type="text" name="isbn" class="form-control" value="{{ old('isbn', $buku->isbn) }}">
-                    @error('isbn')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5">ISBN</label>
+                    <input type="text" name="isbn" value="{{ old('isbn', $buku->isbn) }}"
+                           class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('isbn') border-red-300 @enderror">
+                    @error('isbn') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
 
-                {{-- Kategori Buku --}}
-                <div class="mb-3">
-                    <label>Kategori Buku</label>
-                    <input type="text" name="kategori" class="form-control"
-                        value="{{ old('kategori', $buku->kategori->nama_kategori) }}">
-                    @error('kategori ')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Kategori Buku</label>
+                        <input type="text" name="kategori" value="{{ old('kategori', $buku->kategori->nama_kategori) }}"
+                               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('kategori') border-red-300 @enderror">
+                        @error('kategori') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Penulis</label>
+                        <input type="text" name="penulis" value="{{ old('penulis', $buku->penulis->nama_penulis) }}"
+                               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('penulis') border-red-300 @enderror">
+                        @error('penulis') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
                 </div>
 
-                {{-- Penulis --}}
-                <div class="mb-3">
-                    <label>Penulis</label>
-                    <input type="text" name="penulis" class="form-control"
-                        value="{{ old('penulis', $buku->penulis->nama_penulis) }}">
-                    @error('penulis')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1.5">Sampul Buku</label>
+                    @if ($buku->sampul)
+                        <div class="mb-3">
+                            <img src="{{ asset('storage/sampul/' . $buku->sampul) }}" alt="{{ $buku->judul }}"
+                                 class="w-20 h-28 object-cover rounded-lg border border-gray-200">
+                        </div>
+                    @endif
+                    <input type="file" name="sampul"
+                           class="w-full px-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm file:mr-4 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-slate-800 file:text-white hover:file:bg-slate-900 focus:outline-none @error('sampul') border-red-300 @enderror">
+                    @error('sampul') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
 
-                {{-- Sampul Buku --}}
-                <div class="mb-3">
-                    <label>Sampul Buku</label>
-                    <input type="file" name="sampul" class="form-control">
-                    @error('sampul')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Jumlah Halaman</label>
+                        <input type="number" name="jumlah_halaman" value="{{ old('jumlah_halaman', $buku->jumlah_halaman) }}"
+                               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('jumlah_halaman') border-red-300 @enderror">
+                        @error('jumlah_halaman') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Bahasa</label>
+                        <input type="text" name="bahasa" value="{{ old('bahasa', $buku->bahasa) }}"
+                               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('bahasa') border-red-300 @enderror">
+                        @error('bahasa') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Stok</label>
+                        <input type="number" name="stok" value="{{ old('stok', $buku->stok) }}"
+                               class="w-full px-4 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-slate-800/20 focus:border-slate-800 transition @error('stok') border-red-300 @enderror">
+                        @error('stok') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
+                    </div>
                 </div>
 
-                {{-- Jumlah Halaman --}}
-                <div class="mb-3">
-                    <label>Jumlah Halaman</label>
-                    <input type="number" name="jumlah_halaman" class="form-control"
-                        value="{{ old('jumlah_halaman', $buku->jumlah_halaman) }}">
-                    @error('jumlah_halaman')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                <div class="flex items-center gap-3 pt-2">
+                    <button type="submit" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium rounded-lg transition-colors">Update Data</button>
+                    <a href="{{ route('admin.viewBuku') }}" class="px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-600 text-sm font-medium rounded-lg transition-colors">Kembali</a>
                 </div>
-
-                {{-- Bahasa Buku --}}
-                <div class="mb-3">
-                    <label>Bahasa Buku</label>
-                    <input type="text" name="bahasa" class="form-control" value="{{ old('bahasa', $buku->bahasa) }}">
-                    @error('bahasa')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                {{-- Stok --}}
-                <div class="mb-3">
-                    <label>Stok</label>
-                    <input type="number" name="stok" class="form-control" value="{{ old('stok', $buku->stok) }}">
-                    @error('stok')
-                        <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <button type="submit" class="btn btn-warning">Update Data</button>
-                <a href="{{ route('admin.viewBuku') }}" class="btn btn-secondary">Kembali</a>
             </form>
-
         </div>
     </div>
 @endsection
